@@ -16,7 +16,7 @@
 /******************************************************************************
  * Start of user functions
  *****************************************************************************/
-
+/*
 const GActionEntry app_entries[] = {
 		{ "home", menu_callback_home, NULL, NULL, NULL, { 0, 0, 0 } },
 		{ "car", menu_callback_car, NULL, NULL, NULL, { 0, 0, 0 } },
@@ -111,4 +111,4 @@ void menu_callback_about(GSimpleAction *action, GVariant *parameter,
 
 void destroy_dialog(GtkDialog *dialog, gint response_id, gpointer data) {
 	gtk_widget_destroy(GTK_WIDGET(dialog));
-}
+}*/

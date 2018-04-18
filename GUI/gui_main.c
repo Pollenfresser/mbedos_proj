@@ -68,7 +68,7 @@ void activate (GtkApplication *app, gpointer data)
 	a->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add( GTK_CONTAINER (a->window), a->main_box);
 
-	menu_init ((gpointer) a);
+	// menu_init ((gpointer) a);
 
 	// css
 	apply_css (a->window, a->css_style);
