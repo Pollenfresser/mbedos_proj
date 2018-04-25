@@ -1,10 +1,10 @@
 TARGET   = application.out
 CC       = gcc
 RM       = rm -rf
-SRCDIR   = ./
+SRCDIR   = ./src
 SRC      = $(wildcard $(SRCDIR)/*.c)
 SRC			+= gui_res.c
-INCDIR   = ./header
+INCDIR   = ./inc
 CFLAGS   = `pkg-config --cflags --libs gtk+-3.0`
 CFLAGS  += -I$(SRCDIR)
 CFLAGS  += -I$(INCDIR)

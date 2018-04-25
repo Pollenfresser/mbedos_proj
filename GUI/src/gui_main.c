@@ -60,7 +60,7 @@ void activate (GtkApplication *app, gpointer data)
 	a->window = gtk_application_window_new (a->app);
 	gtk_window_set_application (GTK_WINDOW (a->window), GTK_APPLICATION (a->app));
 	gtk_window_set_position (GTK_WINDOW (a->window), GTK_WIN_POS_CENTER);
-	gtk_window_set_title (GTK_WINDOW (a->window), "Lucas&Chrisy Plotter");
+	gtk_window_set_title (GTK_WINDOW (a->window), "Lucas & Chrisy Plotter");
 	gtk_window_set_default_size (GTK_WINDOW (a->window), 800, 500); // width, height
 
 
