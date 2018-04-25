@@ -32,3 +32,22 @@ done: + ~ -
 * implementing joystick -
 * transfer bare-bone project template -
 
+# Infos
+
+* Manueller und automatischer modus - schalter zum umschalten
+* button für nullposition
+* Bresenham-Algorithmus für Kurven (wie der Motor gesteuert werden muss)
+* GCode File einlesen, 
+* wo berechnet wird (gcode in fahrcode) ist egal
+* kann auch svg sein 
+* muss nur ein format supported werden
+* gui soll min 2 threads haben, besser: 3
+* 1 thread: kommunikation
+* min 1 thread: gui, gut wär multithread, ansonsten hängt sich gui auf
+* gpio task (nur zum einlesen von endschaltern)
+* chrome (?) task - serielle schnittstelle
+* maintainance / service task: algorithmus berechnen
+* empfohlen: logger task, sinn: nimmt fehlermeldungen an, von den unterschiedlichen tasks, versucht sie an die gui weiterzuleiten
+* box mit debugg messages (im gui) - gut für testen
+* wenn endschalter gedrückt: info an chrometask (?) - kommt dann an pc-seite an 
+* breakpoints: verhalten muss nicht immer das gleiche verhalten sein, (da echtzeit) - daher segaprintf(?); logging mechanismus wäre da eben sinnvoll
