@@ -32,18 +32,38 @@
 * Prototypes
 */
 
+// MENU
+void menu_init(gpointer data);
+void menu_visible(gpointer data);
+void destroy_dialog(GtkDialog *dialog, gint response_id, gpointer data);
+void menu_callback_open_file(GSimpleAction *action, GVariant *parameter, gpointer data);
+void menu_callback_about(GSimpleAction *action, GVariant *parameter, gpointer data);
+void menu_callback_quit(GSimpleAction *action, GVariant *parameter,	gpointer data);
+
+// OPEN FILE
+void open_file_visible(gpointer data);
+
 
 /**
 * Global variables
 */
 
+typedef struct {
+	GtkWidget *menubar;
+} gui_menu;
+
+typedef struct {
+	GtkWidget *sub_box;
+
+} open_file;
 // all widgets together
 typedef struct {
 	GtkApplication *app;
 	GtkWidget *window;
 	GtkWidget *main_box;
 	GtkStyleProvider *css_style;
-
+	gui_menu menu;
+	open_file file;
 } widgets;
 
 #endif /* GUI_MAIN_H */
