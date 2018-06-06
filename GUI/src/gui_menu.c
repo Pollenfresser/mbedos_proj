@@ -78,7 +78,7 @@ void menu_init(gpointer data) {
 void menu_callback_open_file(GSimpleAction *action, GVariant *parameter,
 		gpointer data) {
 	widgets *a = (widgets *) data;
-	open_file_visible((gpointer) a);
+	file_selection((gpointer) a);
 }
 
 void menu_callback_about(GSimpleAction *action, GVariant *parameter,

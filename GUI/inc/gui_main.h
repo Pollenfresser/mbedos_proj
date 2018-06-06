@@ -41,7 +41,7 @@ void menu_callback_about(GSimpleAction *action, GVariant *parameter, gpointer da
 void menu_callback_quit(GSimpleAction *action, GVariant *parameter,	gpointer data);
 
 // OPEN FILE
-void open_file_visible(gpointer data);
+void file_selection(gpointer data);
 
 
 /**
@@ -50,20 +50,20 @@ void open_file_visible(gpointer data);
 
 typedef struct {
 	GtkWidget *menubar;
-} gui_menu;
+} gui_menu_s;
 
 typedef struct {
 	GtkWidget *sub_box;
 
-} open_file;
+} open_file_s;
 // all widgets together
 typedef struct {
 	GtkApplication *app;
 	GtkWidget *window;
 	GtkWidget *main_box;
 	GtkStyleProvider *css_style;
-	gui_menu menu;
-	open_file file;
+	gui_menu_s menu;
+	open_file_s file;
 } widgets;
 
 #endif /* GUI_MAIN_H */
