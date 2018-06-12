@@ -24,27 +24,26 @@
 /*
  * The girl loves media technology
  */
-void apply_css(GtkWidget *widget, GtkStyleProvider *css_s)
-{
+void apply_css(GtkWidget *widget, GtkStyleProvider *css_s){
 	gtk_style_context_add_provider (gtk_widget_get_style_context (widget), css_s, G_MAXUINT);
 	if(GTK_IS_CONTAINER (widget)){
 		gtk_container_forall (GTK_CONTAINER (widget), (GtkCallback) apply_css, css_s);
 	}
 }
 
-void file_open (gpointer data){
+void open_file_c (gpointer data){
 
 }
 
-void drawing_area (gpointer data){
+void drawing_area_c (gpointer data){
 
 }
 
-void configure_dialog (gpointer data){
+void configure_dialog_c (gpointer data){
 
 }
 
-void plotter_communication (gpointer data){
+void plotter_communication_c (gpointer data){
 
 }
 
@@ -53,7 +52,7 @@ void activate (GtkApplication *app, gpointer data)
 	widgets *a = (widgets *) data;
 
 	a->css_style = GTK_STYLE_PROVIDER (gtk_css_provider_new ());
-	gtk_css_provider_load_from_resource (GTK_CSS_PROVIDER(a->css_style), "/game_res/css/style.css");
+	gtk_css_provider_load_from_resource (GTK_CSS_PROVIDER(a->css_style), "/gui_res/res/style.css");
 
 
 	// create window and set title *****
@@ -68,7 +67,9 @@ void activate (GtkApplication *app, gpointer data)
 	a->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add( GTK_CONTAINER (a->window), a->main_box);
 
-	// menu_init ((gpointer) a);
+	menu_init ((gpointer) a);
+	menu_visible ((gpointer) a);
+
 
 	// css
 	apply_css (a->window, a->css_style);

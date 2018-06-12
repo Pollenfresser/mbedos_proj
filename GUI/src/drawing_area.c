@@ -3,12 +3,11 @@
  *
  * Author: Christina Bornberg
  *
- * Date of creation: 18.04.2018
+ * Date of creation: 06.06.2018
  *
- * File description: Filehandling
- * GtkFileChooserDialog
+ * File description: Drawing Area
  *
- * Status: not working
+ * Status: beginning
  *
  */
 
