@@ -1,0 +1,8 @@
+$MOD:DATA#
+
+
+$...    Start of Frame
+MOD...  Either PWM1, PWM2 or PWMx (1 and 2)
+:...    Separation char
+DATA... Percentage of the up time as int value between 0 and 100 (0 deactivates the Output)
+#...    End of Frame

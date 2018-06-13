@@ -1,0 +1,75 @@
+= Blinky Example
+
+A siomple blinky example that flashes the LED1 on the XMC Relax-Kit eval board.
+
+== Makefile Usage
+
+[source%nowrap, bash]
+----
+make          # build the application
+make flash    # flash the application
+make debug    # debug the application
+make erase    # erase the program memory
+make doc      # invoke doxygen
+make clean    # clean the project
+----
+
+= Manual 
+
+== Building
+
+[source%nowrap, bash]
+----
+mbed compile -c -m XMC_4500_RELAX_KIT -t GCC_ARM -N main
+----
+
+This creates several files in the BUILD directory where you can find the executables (bin, elf, hex ...).
+
+== Flashing
+
+[source%nowrap, bash]
+----
+$ JLinkExe -Device XMC4500-1024 -if SWD -speed 4000
+J-LINK> h
+J-Link> loadfile BUILD/XMC_4500_RELAX_KIT/GCC_ARM/main.hex
+J-Link> r
+J-Link> g
+----
+
+== Debugging
+
+(1) Build the application with debug symbols enabled by adding `--profile mbed-os/tools/profiles/debug.json`.
+
+[source%nowrap, bash]
+----
+mbed compile -c -m XMC_4500_RELAX_KIT -t GCC_ARM -N main --profile mbed-os/tools/profiles/debug.json
+----
+
+(2) Start the `JLinkGDEBServer`, e.g.:
+
+[source%nowrap, bash]
+----
+JLinkGDBServer -Device XMC4500-1024 -if SWD
+----
+(3) In order to log messages printed to `stdout` we connect to port 2333 via
+telnet.
+
+[source%nowrap, bash]
+----
+telnet 127.0.0.1 2333
+----
+
+(4) We launch the debugger and control the debug session:
+
+[source%nowrap, bash]
+----
+arm-none-eabi-gdb -q BUILD/XMC_4500_RELAX_KIT/GCC_ARM/main.elf
+(gdb) target remote :2331
+(gdb) monitor reset
+(gdb) load
+(gdb) monitor reset
+(gdb) b main
+(gdb) c
+[...]
+----
+
