@@ -18,7 +18,7 @@
  * Start of user functions
  *****************************************************************************/
 
-void file_open(gpointer filename) {
+void file_open(gpointer data) {
 
 }
 
@@ -47,11 +47,10 @@ void file_selection(gpointer data){
 	res = gtk_dialog_run (GTK_DIALOG (dialog));
 	if (res == GTK_RESPONSE_ACCEPT)
 	  {
-	    gchar *filename;
-	    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(dialog));
-	    file_open (filename);
-	    g_print("%s\n", filename);
-	    g_free (filename);
+	    a->file.filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(dialog));
+	    file_open ((gpointer) a);
+	    g_print("%s\n", a->file.filename);
+	    g_free (a->file.filename);
 	  }
 	gtk_widget_destroy (dialog);
 }
