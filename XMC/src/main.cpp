@@ -48,8 +48,13 @@ typedef struct {
   int size_y;
 } plotter_mail_t;
 
+typedef struct {
+  char received[31];
+} pc_mail_t;
+
 Mail <expander_mail_t, 4> expander_mail;
 Mail <plotter_mail_t, 4> plotter_mail;
+Mail <pc_mail_t, 31> pc_mail;
 
 
 /******************************************************************** Threads */
@@ -270,6 +275,45 @@ void pos_init_plotter()
   pc.printf("size_y: %d\n", size_y);
 }
 
+
+void callback_rx ()
+{
+  static int cnt = 0;
+  static bool receiving = FALSE;
+  int buff = pc.getc();
+  if (buff == '$')
+  {
+    cnt = 0;
+    receiving = TRUE;
+    pc_mail_t * mail = pc_mail.alloc();
+  }
+  if (receiving == TRUE)
+  {
+    mail->received[cnt] = buff;
+    cnt++;
+    if (buff == '#')
+    {
+      receiving = FALSE;
+      pc_mail.put(mail);
+    }
+  }
+}
+
+
+void com_pc ()
+{
+  pc.printf("$ready#");
+  pc.attach(&callback_rx);
+  while (1)
+  {
+    osEvent evt = pc_mail.get();
+    if (evt.status == osEventMail)
+    {
+      pc_mail_t * mail = (pc_mail_t *) evt.value.p;
+      
+    }
+  }
+}
 
 /**
  * @brief      { function_description }
