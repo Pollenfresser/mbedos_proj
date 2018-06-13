@@ -63,7 +63,9 @@ void main_drawing_area (gpointer data){
 
 void main_uart_config (gpointer data){
 	widgets *a = (widgets *) data;
-	uart_dialog ((gpointer) a);
+	  uart_dialog_cb((gpointer) a);
+	  initial_uart_config ((gpointer) a);
+
 }
 
 void main_plotter_communication (gpointer data){
