@@ -23,6 +23,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
+#include <glib/gprintf.h>
 
 
 /**
@@ -60,18 +62,55 @@ void draw_area_init(gpointer data);
 void draw_image (gpointer data);
 
 // UART
-void uart_dialog (gpointer data);
+void initial_uart_config (gpointer data);
+void uart_response (GtkDialog *uart_dialog, gint uart_response_id, gpointer data);
+void uart_dialog_cb (gpointer data);
 
 /**
 * Global variables
 */
 
 
+#define DEVLEN 15
+
+enum parity {NONE, EVEN, ODD};
+enum hwcheck {HWCHECKON, HWCHECKOFF};
+enum swcheck {SWCHECKON, SWCHECKOFF};
+
+extern gchar dev[][DEVLEN];
+
+extern gint baud_rate[];
+
+uint16_t check_numeric(gchar *buffer);
+
 
 typedef struct {
-	GtkWidget *label;
-	GtkWidget *entry;
-	GtkWidget *dialog;
+	 // UART specific
+	  GtkWidget *uart_dialog;
+	  GtkWidget *device_combo;
+	  GtkWidget *baudrate_combo;
+	  GtkWidget *parity_combo;
+	  GtkWidget *databits_spinb;
+	  GtkWidget *stopbits_spinb;
+	  GtkWidget *hw_check;
+	  GtkWidget *sw_check;
+	  gchar *selected_device;
+	  gint device_baudrate;
+	  gint device_databits;
+	  gint device_stopbits;
+	  enum parity status_parity;
+	  enum hwcheck status_hwcheck;
+	  enum swcheck status_swcheck;
+	  gboolean inital;
+	  gint idd;
+	  gint idb;
+
+	  gint uart_configured;
+	  GMutex uart_configure_mutex;
+	  GCond uart_configure_cond;
+	  gint uart_ready;
+
+	  gchar *uart_data;
 } uart_s;
 
 typedef struct {
