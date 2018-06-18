@@ -6,6 +6,7 @@
   * Lines
   * Rectangles
   * Cricles
+  * (Path)
 
 ## GUI
 Transmission may start after receiving the "$ready#" message.
@@ -34,5 +35,5 @@ The XMC shall be controllable via the GUI interface. The following commands are 
 * Pen
   * Up: $pen:up#
   * Down: $pen:down#
-* Movement, always in strait lines
+* Movement, always in strait lines, absolute Koordinates
   * $move:x-target:y-target# (Example: $move:50:350#)

@@ -4,6 +4,7 @@
 #include <mbed.h>
 
 #define DEBUG_COM_PLOT 0
+#define DEBUG_COM_PC 1
 #define DEBUG_ENDPOINTS 0
 #define DEBUG_PRIORITY 0
 
